@@ -3,27 +3,27 @@ import React from 'react'
 export class Scoresheet extends PureComponent {
 
   addOnes(){
-    return (turnResult.filter(number => number === 1)).reduce((result, ones) => result + ones)
+    return ones = (turnResult.filter(number => number === 1)).reduce((result, ones) => result + ones)
   }
 
   addTwos() {
-    return (turnResult.filter(number => number === 2)).reduce((result, twos) => result + twos)
+    return twos = (turnResult.filter(number => number === 2)).reduce((result, twos) => result + twos)
   }
 
   addThrees() {
-    return (turnResult.filter(number => number === 3)).reduce((result, threes) => result + threes)
+    return threes = (turnResult.filter(number => number === 3)).reduce((result, threes) => result + threes)
   }
 
   addFours() {
-    return (turnResult.filter(number => number === 4)).reduce((result, fours) => result + fours)
+    return fours = (turnResult.filter(number => number === 4)).reduce((result, fours) => result + fours)
   }
 
   addFives() {
-    return (turnResult.filter(number => number === 5)).reduce((result, fives) => result + fives)
+    return fives = (turnResult.filter(number => number === 5)).reduce((result, fives) => result + fives)
   }
 
   addSixes() {
-    return (turnResult.filter(number => number === 6)).reduce((result, sixes) => result + sixes)
+    return sixes = (turnResult.filter(number => number === 6)).reduce((result, sixes) => result + sixes)
   }
 
   hasThreeOfaKind(){
@@ -35,10 +35,10 @@ export class Scoresheet extends PureComponent {
 
   threeOfaKind(){
     if (hasThreeOfaKind) {
-        return (turnResult.reduce((result, number) => result + number))
+        return threeOfaKind = (turnResult.reduce((result, number) => result + number))
       }
       else {
-        return 0
+        return threeOfaKind = 0
       }
   }
 
@@ -50,10 +50,10 @@ export class Scoresheet extends PureComponent {
       (turnResult.filter(number => number === 4)).length >= 4 ||
       (turnResult.filter(number => number === 5)).length >= 4 ||
       (turnResult.filter(number => number === 6)).length >= 4) {
-        return (turnResult.reduce((result, number) => result + number))
+        return carre = (turnResult.reduce((result, number) => result + number))
       }
       else {
-        return 0
+        return carre = 0
       }
   }
 
@@ -65,11 +65,11 @@ export class Scoresheet extends PureComponent {
       ((sortedTurnResult[0] === sortedTurnResult[1]) &&
       (sortedTurnResult[2] === sortedTurnResult[3]) && (sortedTurnResult[2] === sortedTurnResult[4]))
     ) {
-      console.log(25)
+      return fullHouse = 25
     }
 
     else {
-    console.log(0)
+      return fullHouse = 0
     }
   }
 
@@ -85,11 +85,11 @@ export class Scoresheet extends PureComponent {
     (unDoubled[1] === 2 && unDoubled[2] === 3 && unDoubled[3] === 4 && unDoubled[4] === 5 ) ||
     (unDoubled[1] === 3 && unDoubled[2] === 4 && unDoubled[3] === 5 && unDoubled[4] === 6 ))
     {
-      return 30
+      return smallStreet = 30
     }
     else
     {
-      return 0
+      return smallStreet = 0
     }
   }
 
@@ -101,10 +101,10 @@ export class Scoresheet extends PureComponent {
         return element === largeStreet1[index] })) === true ||
         (turnResult.every(function(element, index) {
         return element === largeStreet2[index]  })) === true) {
-          return (40)
+          return largeStreet = 40
         }
     else {
-      return 0
+      return largeStreet = 0
     }
   }
 
@@ -116,28 +116,70 @@ export class Scoresheet extends PureComponent {
       (turnResult.filter(number => number === 4)).length === 5 ||
       (turnResult.filter(number => number === 5)).length === 5||
       (turnResult.filter(number => number === 6)).length === 5) {
-        return (50)
+        return yahtzee = 50
       }
       else {
-        return 0
+        return yahtzee = 0
       }
   }
 
   chance(){
-    return (turnResult.reduce((result, number) => result + number))
+    return chance = (turnResult.reduce((result, number) => result + number))
   }
 
 
+
+
   render(){
+    const ones = 0
+    const twos = 0
+    const threes = 0
+    const fours = 0
+    const fives = 0
+    const sixes = 0
+    const totalTop = 0
+    const bonus = 0
+    const threeOfaKind = 0
+    const carre = 0
+    const fullHouse = 0
+    const smallStreet = 0
+    const largeStreet = 0
+    const yahtzee = 0
+    const chance = 0
+    const totalBottom = 0
+    const total = 0
+
+    function totalTop() {
+      return totalTop = ones + twos + threes + fours + fives + sixes
+    }
+
+    function bonus() {
+      if (totalTop >= 63) {
+        return 35
+      }
+      else {
+        return 0
+      }
+    }
+
+    function totalBottom() {
+      return totalBottom = threeOfaKind + carre + fullHouse + smallStreet + largeStreet + yahtzee + chance
+    }
+
+    function total() {
+      return total = totalTop + bonus+ totalBottom
+    }
+    
+
     return
-    <div label="scoreSheet">
+    <div>
       <div>
       <button
         label="Add Ones"
         onClick={this.addOnes.bind(this)}>
         Ones
         </button>
-        <h1></h1>
+        <h1>{ones}</h1>
       </div>
 
       <div>
@@ -146,6 +188,7 @@ export class Scoresheet extends PureComponent {
         onClick={this.addTwos.bind(this)}>
         Twos
         </button>
+        <h1>{twos}</h1>
       </div>
 
       <div>
@@ -154,6 +197,7 @@ export class Scoresheet extends PureComponent {
         onClick={this.addThrees.bind(this)}>
         Threes
         </button>
+        <h1>{threes}</h1>
       </div>
 
       <div>
@@ -162,6 +206,7 @@ export class Scoresheet extends PureComponent {
         onClick={this.addFours.bind(this)}>
         Fours
         </button>
+        <h1>{fours}</h1>
       </div>
 
       <div>
@@ -170,6 +215,7 @@ export class Scoresheet extends PureComponent {
         onClick={this.addFives.bind(this)}>
         Fives
         </button>
+        <h1>{fives}</h1>
       </div>
 
       <div>
@@ -178,6 +224,15 @@ export class Scoresheet extends PureComponent {
         onClick={this.addSixes.bind(this)}>
         Sixes
         </button>
+        <h1>{sixes}</h1>
+      </div>
+
+      <div>
+      <h1>Total Top {totalTop}</h1>
+      </div>
+
+      <div>
+      <h1>Bonus: {bonus}</h1>
       </div>
 
       <div>
@@ -186,6 +241,7 @@ export class Scoresheet extends PureComponent {
         onClick={this.threeOfaKind.bind(this)}>
         Three of a Kind
         </button>
+        <h1>{threeOfaKind}</h1>
       </div>
 
       <div>
@@ -194,6 +250,7 @@ export class Scoresheet extends PureComponent {
         onClick={this.carre.bind(this)}>
         Carre
         </button>
+        <h1>{carre}</h1>
       </div>
 
       <div>
@@ -202,6 +259,7 @@ export class Scoresheet extends PureComponent {
         onClick={this.fullHouse.bind(this)}>
         FullHouse
         </button>
+        <h1>{fullHouse}</h1>
       </div>
 
       <div>
@@ -210,6 +268,7 @@ export class Scoresheet extends PureComponent {
         onClick={this.smallStreet.bind(this)}>
         Small Street
         </button>
+        <h1>{smallStreet}</h1>
       </div>
 
       <div>
@@ -218,6 +277,7 @@ export class Scoresheet extends PureComponent {
         onClick={this.largeStreet.bind(this)}>
         Large Street
         </button>
+        <h1>{largeStreet}</h1>
       </div>
 
       <div>
@@ -226,6 +286,7 @@ export class Scoresheet extends PureComponent {
         onClick={this.yahtzee.bind(this)}>
         Yahtzee
         </button>
+        <h1>{yahtzee}</h1>
       </div>
 
       <div>
@@ -234,6 +295,15 @@ export class Scoresheet extends PureComponent {
         onClick={this.chance.bind(this)}>
         Chance
         </button>
+        <h1>{chance}</h1>
+      </div>
+
+      <div>
+      <h1>Total Bottom: {totalBottom}</h1>
+      </div>
+
+      <div>
+      <h1>Total {total}</h1>
       </div>
     </div>
   }
