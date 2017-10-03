@@ -14,15 +14,9 @@ import D4L from '../../images/dice4lock.png'
 import D5L from '../../images/dice5lock.png'
 import D6L from '../../images/dice6lock.png'
 
-const dieOne = {
-  dieID: 1,
-  number: 5,
-  locked: false,
-}
-
 class Dice extends PureComponent {
   static propTypes = {
-    dieID: PropTypes.number,
+    dieId: PropTypes.number,
     number: PropTypes.number,
     locked: PropTypes.boolean,
   }
@@ -37,32 +31,28 @@ class Dice extends PureComponent {
   }
 
   showDie() {
-    if (this.props.locked === false) {
-      if (this.props.number === 1) return <img src={ D1 } alt="Dice1"/>
-      if (this.props.number === 2) return <img src={ D2 } alt="Dice2"/>
-      if (this.props.number === 3) return <img src={ D3 } alt="Dice3"/>
-      if (this.props.number === 4) return <img src={ D4 } alt="Dice4"/>
-      if (this.props.number === 5) return <img src={ D5 } alt="Dice5"/>
-      if (this.props.number === 6) return <img src={ D6 } alt="Dice6"/>
-    }
-    if (this.props.locked === true) {
-      if (this.props.number === 1) return <img src={ D1L } alt="Dice1lock"/>
-      if (this.props.number === 2) return <img src={ D2L } alt="Dice2lock"/>
-      if (this.props.number === 3) return <img src={ D3L } alt="Dice3lock"/>
-      if (this.props.number === 4) return <img src={ D4L } alt="Dice4lock"/>
-      if (this.props.number === 5) return <img src={ D5L } alt="Dice5lock"/>
-      if (this.props.number === 6) return <img src={ D6L } alt="Dice6lock"/>
-    }
+      if (this.props.number === 1 && this.props.locked === false) return <img src={ D1 } alt="Dice1"/>
+      if (this.props.number === 2 && this.props.locked === false) return <img src={ D2 } alt="Dice2"/>
+      if (this.props.number === 3 && this.props.locked === false) return <img src={ D3 } alt="Dice3"/>
+      if (this.props.number === 4 && this.props.locked === false) return <img src={ D4 } alt="Dice4"/>
+      if (this.props.number === 5 && this.props.locked === false) return <img src={ D5 } alt="Dice5"/>
+      if (this.props.number === 6 && this.props.locked === false) return <img src={ D6 } alt="Dice6"/>
+      if (this.props.number === 1 && this.props.locked === true) return <img src={ D1L } alt="Dice1lock"/>
+      if (this.props.number === 2 && this.props.locked === true) return <img src={ D2L } alt="Dice2lock"/>
+      if (this.props.number === 3 && this.props.locked === true) return <img src={ D3L } alt="Dice3lock"/>
+      if (this.props.number === 4 && this.props.locked === true) return <img src={ D4L } alt="Dice4lock"/>
+      if (this.props.number === 5 && this.props.locked === true) return <img src={ D5L } alt="Dice5lock"/>
+      if (this.props.number === 6 && this.props.locked === true) return <img src={ D6L } alt="Dice6lock"/>
   }
 
   render() {
+    const die1 = { dieId: 1, number: 6, locked: false }
+
     return(
-      <div>{ dieOne.showDie() }</div>
+      <div>{ die1.showDie() }</div>
 
     )
   }
 }
-const mapStateToProps = ({ diceValues }) => ({ diceValues })
-// dispatch = show Dice
 
-export default connect(mapStateToProps, null)(Dice)
+export default connect(null, null)(Dice)
