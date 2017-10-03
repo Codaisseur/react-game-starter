@@ -7,7 +7,7 @@ import subscribeToGames from '../actions/games/subscribe'
 class Game extends PureComponent {
   componentWillMount() {
     const { game, fetchGames, getCurrentGame, subscribeToGames, subscribed } = this.props
-    const { gameId } = this.props.params
+    const { gameId } = this.props.match.params
 
     if (!game) fetchGames()
     getCurrentGame(gameId)
@@ -30,7 +30,9 @@ class Game extends PureComponent {
 
 const mapStateToProps = ({ currentUser, currentGame, games, subscriptions }) => {
   const game = games.filter((g) => (g._id === currentGame))[0]
-  const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
+  const currentPlayer = currentUser._id
+  // const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
+  // later naar kijken voor multiplayer
 
   return {
     currentPlayer,

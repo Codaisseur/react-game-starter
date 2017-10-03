@@ -24,7 +24,7 @@ class Lobby extends PureComponent {
     const { push } = this.props
 
     return () => {
-      push(`/games/${gameId}`)
+      push(`/play/${gameId}`)
     }
   }
 
