@@ -26,16 +26,7 @@ export class Scoresheet extends PureComponent {
     return (turnResult.filter(number => number === 6)).reduce((result, sixes) => result + sixes)
   }
 
-  // hasThreeOfaKind (){
-  // return ((turnResult.filter(number => number === 1)).length >= 3 ||
-  //     (turnResult.filter(number => number === 2)).length >= 3 ||
-  //     (turnResult.filter(number => number === 3)).length >= 3 ||
-  //     (turnResult.filter(number => number === 4)).length >= 3 ||
-  //     (turnResult.filter(number => number === 5)).length >= 3 ||
-  //     (turnResult.filter(number => number === 6)).length >= 3)
-  // }
-
-  harThreeOfaKind(){
+  hasThreeOfaKind(){
     var sortedTurnResult = turnResult.sort()
     return ((sortedTurnResult[0] === sortedTurnResult[1]) && (sortedTurnResult[0] === sortedTurnResult[2]) ||
     (sortedTurnResult[1] === sortedTurnResult[2]) && (sortedTurnResult[1] === sortedTurnResult[3])
@@ -139,12 +130,111 @@ export class Scoresheet extends PureComponent {
 
   render(){
     return
-    <div>
-    <button
-      label="Add Ones"
-      onClick={this.addOnes.bind(this)}>
-      Ones
-      </button>
+    <div label="scoreSheet">
+      <div>
+      <button
+        label="Add Ones"
+        onClick={this.addOnes.bind(this)}>
+        Ones
+        </button>
+        <h1></h1>
+      </div>
+
+      <div>
+      <button
+        label="Add Twos"
+        onClick={this.addTwos.bind(this)}>
+        Twos
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add Threes"
+        onClick={this.addThrees.bind(this)}>
+        Threes
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add Fours"
+        onClick={this.addFours.bind(this)}>
+        Fours
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add Fives"
+        onClick={this.addFives.bind(this)}>
+        Fives
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add Sixes"
+        onClick={this.addSixes.bind(this)}>
+        Sixes
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add threeOfaKind"
+        onClick={this.threeOfaKind.bind(this)}>
+        Three of a Kind
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add Carre"
+        onClick={this.carre.bind(this)}>
+        Carre
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add fullHouse"
+        onClick={this.fullHouse.bind(this)}>
+        FullHouse
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add smallStreet"
+        onClick={this.smallStreet.bind(this)}>
+        Small Street
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add largeStreet"
+        onClick={this.largeStreet.bind(this)}>
+        Large Street
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add Yahtzee"
+        onClick={this.yahtzee.bind(this)}>
+        Yahtzee
+        </button>
+      </div>
+
+      <div>
+      <button
+        label="Add chance"
+        onClick={this.chance.bind(this)}>
+        Chance
+        </button>
+      </div>
     </div>
   }
 }
