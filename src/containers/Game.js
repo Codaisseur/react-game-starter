@@ -4,6 +4,7 @@ import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
 import JoinDialog from '../components/games/JoinDialog'
+import ScoreSheet from '../components/games/ScoreSheet'
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -25,6 +26,7 @@ class Game extends PureComponent {
         <h1>Game!</h1>
         <h1>{ game.title }</h1>
         <div><JoinDialog game={game} /></div>
+        <div><ScoreSheet scoreSheet ={game.scoreSheet} /></div>
 
       </div>
     )
@@ -33,8 +35,8 @@ class Game extends PureComponent {
 
 const mapStateToProps = ({ currentUser, currentGame, games, subscriptions }) => {
   const game = games.filter((g) => (g._id === currentGame))[0]
-  const currentPlayer = currentUser._id
-  // const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
+  //const currentPlayer = currentUser._id
+  const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
   // later naar kijken voor multiplayer
 
   return {
