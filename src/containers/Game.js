@@ -5,6 +5,9 @@ import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
 import Dice from '../components/games/rocksandroll/Dice'
 
+import JoinButton from '../components/games/JoinButton'
+
+
 class Game extends PureComponent {
   componentWillMount() {
     const { game, fetchGames, getCurrentGame, subscribeToGames, subscribed } = this.props
@@ -23,8 +26,16 @@ class Game extends PureComponent {
     return (
       <div className="Game">
         <h1>Game!</h1>
+<<<<<<< HEAD
         <p>test</p>
         <Dice />
+||||||| merged common ancestors
+        <p>test</p>
+=======
+
+        <div><JoinButton game={game} /></div>
+
+>>>>>>> 5d7948a71946afbddc17f3ec84f71bc0c83f2cb9
       </div>
     )
   }
