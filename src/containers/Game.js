@@ -5,6 +5,7 @@ import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
 import JoinDialog from '../components/games/JoinDialog'
 import ScoreSheet from '../components/games/ScoreSheet'
+import GamePlayers from '../components/games/GamePlayers'
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -17,7 +18,7 @@ class Game extends PureComponent {
   }
 
   render() {
-    const { game } = this.props
+    const { game, currentUser } = this.props
 
     if (!game) return null
 
@@ -27,7 +28,7 @@ class Game extends PureComponent {
         <h1>{ game.title }</h1>
         <div><JoinDialog game={game} /></div>
         <div><ScoreSheet scoreSheet ={game.scoreSheet} /></div>
-
+        <div><GamePlayers game={game} currentUser={currentUser}/></div>
       </div>
     )
   }
