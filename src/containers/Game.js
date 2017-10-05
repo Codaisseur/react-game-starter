@@ -26,7 +26,7 @@ class Game extends PureComponent {
         <h1>Game!</h1>
         <h1>{ game.title }</h1>
         <div><JoinDialog game={game} /></div>
-        <Dice game={game}/>
+        <Dice game={game} dice={ game.rollDice }/>
       </div>
     )
   }
