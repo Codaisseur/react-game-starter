@@ -4,6 +4,7 @@ import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
 import JoinDialog from '../components/games/JoinDialog'
+import Dice from '../components/games/Dice'
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -25,7 +26,7 @@ class Game extends PureComponent {
         <h1>Game!</h1>
         <h1>{ game.title }</h1>
         <div><JoinDialog game={game} /></div>
-
+        <Dice game={game}/>
       </div>
     )
   }
