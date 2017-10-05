@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
+import JoinButton from '../components/games/JoinButton'
 
 class Game extends PureComponent {
   componentWillMount() {
     const { game, fetchGames, getCurrentGame, subscribeToGames, subscribed } = this.props
-    const { gameId } = this.props.params
+    const { gameId } = this.props.match.params
 
     if (!game) fetchGames()
     getCurrentGame(gameId)
@@ -22,7 +23,7 @@ class Game extends PureComponent {
     return (
       <div className="Game">
         <h1>Game!</h1>
-        <p>This is where your game goes...</p>
+        <div><JoinButton game={game} /></div>
       </div>
     )
   }
@@ -30,7 +31,9 @@ class Game extends PureComponent {
 
 const mapStateToProps = ({ currentUser, currentGame, games, subscriptions }) => {
   const game = games.filter((g) => (g._id === currentGame))[0]
-  const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
+  const currentPlayer = currentUser._id
+  // const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
+  // later naar kijken voor multiplayer
 
   return {
     currentPlayer,

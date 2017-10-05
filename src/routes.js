@@ -5,7 +5,7 @@ import {
   Lobby,
   Game,
   SignIn,
-  SignUp
+  SignUp,
 } from './containers'
 
 export default class Routes extends Component {
