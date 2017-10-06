@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import '../../containers/Game.css'
 
 
 export class ScoreSheet extends PureComponent {
@@ -23,7 +24,7 @@ export class ScoreSheet extends PureComponent {
 
    return (
 
-     <div>
+     <div className='scoresheety'>
      <h1>This is {currentUserScoresheet.title}</h1>
      <h4>Ones: {currentUserScoresheet.ones}</h4>
      <h4>Twos: {currentUserScoresheet.twos}</h4>

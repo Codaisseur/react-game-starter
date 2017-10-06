@@ -9,25 +9,24 @@ export class DiceButtons extends PureComponent {
     roll(game._id)
   }
 
-  // handleUsage = () => {
-  //   const { subscribe } = this.props
-  //   subscribe()
-  // }
+  handleUsage = () => {
+    return null
+  }
 
   render() {
     return(
-      // <div classNamme="diceOptions">
+      <div className="diceOptions">
           <FlatButton
             label="Roll"
             primary={true}
             onClick={this.handleRoll}
           />
-      //     <FlatButton
-      //       label="Use"
-      //       primary={true}
-      //       onClick={this.handleUsage}
-      //     />
-      // </div>
+          <FlatButton
+            label="Use"
+            primary={true}
+            onClick={this.handleUsage}
+          />
+      </div>
 
     )
   }

@@ -7,11 +7,10 @@ import JoinDialog from '../components/games/JoinDialog'
 import ScoreSheet from '../components/games/ScoreSheet'
 import GamePlayers from '../components/games/GamePlayers'
 import Dice from '../components/games/Dice'
-import logo from '../components/games/R&R.png'
-
+import logo from '../components/games/R&R-bigger.png'
 import DiceButtons from '../components/games/DiceButtons'
 import EndTurn from '../components/games/EndTurn'
-r
+
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -24,16 +23,15 @@ class Game extends PureComponent {
   }
 
   render() {
-    const { game } = this.props
+    const { game, currentUser } = this.props
 
     if (!game) return null
 
     return (
       <div className="Game">
         <img className='imagy' src={ logo } alt='Rocks and roll' />
-        <h3>{ game.title }</h3>
         <div><JoinDialog game={game} /></div>
-        <div><GamePlayers game={game}/></div>
+        <div><GamePlayers game={game} players={ game.players }/></div>
         <Dice game={game} dice={ game.rollDice }/>
         <DiceButtons game={game} />
         <div><ScoreSheet scoreSheet ={game.scoreSheet} game={game} /></div>
