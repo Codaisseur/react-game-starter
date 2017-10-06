@@ -3,26 +3,60 @@ import { connect } from 'react-redux'
 import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
+import Riddle from '../components/games/Riddle'
+import GuessEditor from '../components/games/Guess'
+import StartGame from '../components/games/StartGame'
+import './Game.css'
+
 
 class Game extends PureComponent {
   componentWillMount() {
-    const { game, fetchGames, getCurrentGame, subscribeToGames, subscribed } = this.props
-    const { gameId } = this.props.params
-
+    const { game, fetchGames, getCurrentGame, subscribeToGames, subscribed} = this.props
+    const { gameId } = this.props.match.params
     if (!game) fetchGames()
     getCurrentGame(gameId)
     if (!subscribed) subscribeToGames()
   }
 
+  renderRiddle(riddle, index) {
+    return <Riddle
+      key={index} { ...riddle } />
+  }
+
+  lastRiddle() {
+    const { currentPlayer } = this.props
+    return currentPlayer.question[currentPlayer.question.length - 1]
+  }
+
   render() {
-    const { game } = this.props
+    const { game, currentPlayer } = this.props
 
     if (!game) return null
 
+    if (!currentPlayer) {
+      return (
+        <div className="Game">
+          <h1 className="Riddle">Riddle!</h1>
+          <p>Join the game...</p>
+          <p>Coming up soon!</p>
+        </div>
+      )
+    }
+
+    if (game.started === false) return (
+      <div className="Game">
+        <h1 className="Riddle">Riddle!</h1>
+        <StartGame />
+      </div>
+    )
+
     return (
       <div className="Game">
-        <h1>Game!</h1>
-        <p>This is where your game goes...</p>
+        <h1 className="Riddle">Riddle!</h1>
+
+        <div className="Question"><p>{this.lastRiddle()}</p></div>
+
+        <GuessEditor />
       </div>
     )
   }
@@ -35,7 +69,6 @@ const mapStateToProps = ({ currentUser, currentGame, games, subscriptions }) => 
   return {
     currentPlayer,
     game,
-    hasTurn: currentPlayer && currentPlayer._id === currentUser._id,
     subscribed: subscriptions.includes('games'),
   }
 }
