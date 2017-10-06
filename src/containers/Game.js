@@ -8,7 +8,7 @@ import ScoreSheet from '../components/games/ScoreSheet'
 import GamePlayers from '../components/games/GamePlayers'
 import Dice from '../components/games/Dice'
 import logo from '../components/games/R&R.png'
-
+import EndTurn from '../components/games/EndTurn'
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -22,6 +22,7 @@ class Game extends PureComponent {
 
   render() {
     const { game, currentUser } = this.props
+    console.log(game)
 
     if (!game) return null
 
@@ -33,7 +34,7 @@ class Game extends PureComponent {
         <div><ScoreSheet scoreSheet ={game.scoreSheet} /></div>
         <div><GamePlayers game={game} currentUser={currentUser}/></div>
         <Dice game={game} dice={ game.rollDice }/>
-
+        <EndTurn game={game} user={currentUser}/>
       </div>
     )
   }
@@ -46,6 +47,7 @@ const mapStateToProps = ({ currentUser, currentGame, games, subscriptions }) => 
   // later naar kijken voor multiplayer
 
   return {
+    currentUser,
     currentPlayer,
     game,
     hasTurn: currentPlayer && currentPlayer._id === currentUser._id,
