@@ -8,7 +8,10 @@ import ScoreSheet from '../components/games/ScoreSheet'
 import GamePlayers from '../components/games/GamePlayers'
 import Dice from '../components/games/Dice'
 import logo from '../components/games/R&R.png'
+
+import DiceButtons from '../components/games/DiceButtons'
 import EndTurn from '../components/games/EndTurn'
+r
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -32,8 +35,10 @@ class Game extends PureComponent {
         <div><JoinDialog game={game} /></div>
         <div><GamePlayers game={game}/></div>
         <Dice game={game} dice={ game.rollDice }/>
+        <DiceButtons game={game} />
         <div><ScoreSheet scoreSheet ={game.scoreSheet} game={game} /></div>
         <EndTurn game={game} user={currentUser}/>
+
 
       </div>
     )
