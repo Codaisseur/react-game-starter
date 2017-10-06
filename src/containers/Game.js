@@ -4,8 +4,11 @@ import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
 import JoinDialog from '../components/games/JoinDialog'
+import ScoreSheet from '../components/games/ScoreSheet'
+import GamePlayers from '../components/games/GamePlayers'
 import Dice from '../components/games/Dice'
 import logo from '../components/games/R&R.png'
+
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -18,7 +21,7 @@ class Game extends PureComponent {
   }
 
   render() {
-    const { game } = this.props
+    const { game, currentUser } = this.props
 
     if (!game) return null
 
@@ -27,7 +30,10 @@ class Game extends PureComponent {
         <img className='imagy' src={ logo } alt='Rocks and roll' />
         <h3>{ game.title }</h3>
         <div><JoinDialog game={game} /></div>
+        <div><ScoreSheet scoreSheet ={game.scoreSheet} /></div>
+        <div><GamePlayers game={game} currentUser={currentUser}/></div>
         <Dice game={game} dice={ game.rollDice }/>
+
       </div>
     )
   }
@@ -35,8 +41,8 @@ class Game extends PureComponent {
 
 const mapStateToProps = ({ currentUser, currentGame, games, subscriptions }) => {
   const game = games.filter((g) => (g._id === currentGame))[0]
-  const currentPlayer = currentUser._id
-  // const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
+  //const currentPlayer = currentUser._id
+  const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
   // later naar kijken voor multiplayer
 
   return {
