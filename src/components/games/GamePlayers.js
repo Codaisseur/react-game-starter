@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 
 
 export class GamePlayers extends PureComponent {
@@ -13,22 +14,21 @@ export class GamePlayers extends PureComponent {
     )
   }
 
+  render() {
+    const { currentUser } = this.props
+    const { players } = this.props.game
 
- render() {
-   const { players } = this.props.game
-
-
-
-
-   return (
-       <ul>
-       Players:
-        {players.map(this.renderThisGamePlayer)}
-       </ul>
-
-
-   )
- }
+    return (
+      <div>
+      <ul>
+      Players:
+      {players.map(this.renderThisGamePlayer)}
+      </ul>
+      <h1>You are: {currentUser.name}</h1>
+      </div>
+    )
+  }
 }
+const mapStateToProps = ({ currentUser }) => ({ currentUser })
 
-export default (GamePlayers)
+export default connect(mapStateToProps)(GamePlayers)
