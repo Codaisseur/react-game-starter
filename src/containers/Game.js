@@ -8,7 +8,7 @@ import ScoreSheet from '../components/games/ScoreSheet'
 import GamePlayers from '../components/games/GamePlayers'
 import Dice from '../components/games/Dice'
 import logo from '../components/games/R&R.png'
-
+import DiceButtons from '../components/games/DiceButtons'
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -33,6 +33,7 @@ class Game extends PureComponent {
         <div><ScoreSheet scoreSheet ={game.scoreSheet} /></div>
         <div><GamePlayers game={game} currentUser={currentUser}/></div>
         <Dice game={game} dice={ game.rollDice }/>
+        <DiceButtons game={game} />
 
       </div>
     )

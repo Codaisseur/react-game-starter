@@ -29,7 +29,7 @@ export class JoinDialog extends PureComponent {
        onClick={this.handleNope}
      />,
      <FlatButton
-       label="Hell, Yeah!"
+       label="Rock on!"
        primary={true}
        keyboardFocused={true}
        onClick={this.handleYeah}

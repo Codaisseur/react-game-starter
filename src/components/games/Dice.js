@@ -33,6 +33,7 @@ export class Dice extends PureComponent {
       <ul className="diceListy">
         {listItems}
       </ul>
+
     )
   }
 }
