@@ -3,11 +3,19 @@ import { connect } from 'react-redux'
 import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
+import JoinDialog from '../components/games/JoinDialog'
+import ScoreSheet from '../components/games/ScoreSheet'
+import GamePlayers from '../components/games/GamePlayers'
+import Dice from '../components/games/Dice'
+import logo from '../components/games/R&R-bigger.png'
+import DiceButtons from '../components/games/DiceButtons'
+import EndTurn from '../components/games/EndTurn'
+
 
 class Game extends PureComponent {
   componentWillMount() {
     const { game, fetchGames, getCurrentGame, subscribeToGames, subscribed } = this.props
-    const { gameId } = this.props.params
+    const { gameId } = this.props.match.params
 
     if (!game) fetchGames()
     getCurrentGame(gameId)
@@ -15,14 +23,21 @@ class Game extends PureComponent {
   }
 
   render() {
-    const { game } = this.props
+    const { game, currentUser } = this.props
 
     if (!game) return null
 
     return (
       <div className="Game">
-        <h1>Game!</h1>
-        <p>This is where your game goes...</p>
+        <img className='imagy' src={ logo } alt='Rocks and roll' />
+        <div><JoinDialog game={game} /></div>
+        <div><GamePlayers game={game} players={ game.players }/></div>
+        <Dice game={game} dice={ game.rollDice }/>
+        <DiceButtons game={game} />
+        <div><ScoreSheet scoreSheet ={game.scoreSheet} game={game} /></div>
+        <EndTurn game={game} user={currentUser}/>
+
+
       </div>
     )
   }
@@ -30,9 +45,12 @@ class Game extends PureComponent {
 
 const mapStateToProps = ({ currentUser, currentGame, games, subscriptions }) => {
   const game = games.filter((g) => (g._id === currentGame))[0]
+  //const currentPlayer = currentUser._id
   const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
+  // later naar kijken voor multiplayer
 
   return {
+    currentUser,
     currentPlayer,
     game,
     hasTurn: currentPlayer && currentPlayer._id === currentUser._id,

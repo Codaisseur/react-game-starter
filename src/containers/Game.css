@@ -1,0 +1,30 @@
+.die {
+  margin: 10px;
+  border: 2px;
+  border-color: #000;
+}
+
+.diceListy {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.diceListy li {
+  display: inline;
+}
+
+.imagy {
+  margin-top: 30px;
+}
+
+.peopleListy {
+  margin-top: 20px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.scoreSheety {
+  text-transform: capitalize;
+}
