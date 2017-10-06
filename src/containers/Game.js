@@ -3,16 +3,26 @@ import { connect } from 'react-redux'
 import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
+import Riddle from '../components/games/Riddle'
+import GuessEditor from '../components/games/Guess'
+import StartGame from '../components/games/StartGame'
+
 
 class Game extends PureComponent {
   componentWillMount() {
-    const { game, fetchGames, getCurrentGame, subscribeToGames, subscribed } = this.props
-    const { gameId } = this.props.params
-
+    const { game, fetchGames, getCurrentGame, subscribeToGames, subscribed} = this.props
+    const { gameId } = this.props.match.params
     if (!game) fetchGames()
     getCurrentGame(gameId)
     if (!subscribed) subscribeToGames()
   }
+
+  renderRiddle(riddle, index) {
+      return <Riddle
+        key={index} { ...riddle } />
+    }
+
+
 
   render() {
     const { game } = this.props
@@ -21,8 +31,10 @@ class Game extends PureComponent {
 
     return (
       <div className="Game">
-        <h1>Game!</h1>
-        <p>This is where your game goes...</p>
+        <h1>Riddle!</h1>
+      
+        <GuessEditor />
+        <StartGame />
       </div>
     )
   }
