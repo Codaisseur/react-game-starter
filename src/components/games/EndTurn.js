@@ -23,6 +23,8 @@ export class EndTurn extends PureComponent {
           label="End turn"
           onClick={this.handleTurn}
         />
+        <br />
+        <br />
       </div>
     )
   }

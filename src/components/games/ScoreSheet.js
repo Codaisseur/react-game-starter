@@ -1,56 +1,56 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import '../../containers/Game.css'
-
+import {Card, CardTitle, CardText} from 'material-ui/Card';
 
 export class ScoreSheet extends PureComponent {
 
+  bonus() {
+    const {  game, scoreSheet, currentUser } = this.props
+    const playerIds = game.playerIds
+    const currentUserIndex = playerIds.indexOf(currentUser._id)
+    const currentUserScoresheet = scoreSheet[currentUserIndex]
 
+    if (currentUserScoresheet.bonus === true) return "35"
+    else return "0"
+  }
 
+  render() {
+    const {  game, scoreSheet, currentUser } = this.props
+    const playerIds = game.playerIds
+    const currentUserIndex = playerIds.indexOf(currentUser._id)
+    const currentUserScoresheet = scoreSheet[currentUserIndex]
 
+    if (!playerIds.includes(currentUser._id)) return null;
 
-
- render() {
-   const {  game, scoreSheet, currentUser } = this.props
-   const playerIds = game.playerIds
-   const currentUserIndex = playerIds.indexOf(currentUser._id)
-   const currentUserScoresheet = scoreSheet[currentUserIndex]
-
-
-
-   if (!playerIds.includes(currentUser._id)) return null;
-
-
-
-   return (
-
-     <div className='scoresheety'>
-     <h1>This is {currentUserScoresheet.title}</h1>
-     <h4>Ones: {currentUserScoresheet.ones}</h4>
-     <h4>Twos: {currentUserScoresheet.twos}</h4>
-     <h4>Threes: {currentUserScoresheet.threes}</h4>
-     <h4>Fours: {currentUserScoresheet.fours}</h4>
-     <h4>Fives: {currentUserScoresheet.fives}</h4>
-     <h4>Sixes: {currentUserScoresheet.sixes}</h4>
-     <p>-------------</p>
-     <h4>Total score top part: {currentUserScoresheet.totalTop}</h4>
-     <h4>Will you get the Bonus?: {currentUserScoresheet.bonus}</h4>
-     <p>-------------</p>
-     <h4>Three of a Kind: {currentUserScoresheet.threeOfaKind}</h4>
-     <h4>Carre: {currentUserScoresheet.carre}</h4>
-     <h4>Fullhouse: {currentUserScoresheet.fullHouse}</h4>
-     <h4>Small Street: {currentUserScoresheet.smallStreet}</h4>
-     <h4>Large Street: {currentUserScoresheet.largeStreet}</h4>
-     <h4>Yathzee: {currentUserScoresheet.yahtzee}</h4>
-     <h4>Chance: {currentUserScoresheet.chance}</h4>
-      <p>-------------</p>
-     <h4>Total score bottom part: {currentUserScoresheet.totalBottom}</h4>
-     <h4>Total score: {currentUserScoresheet.totalComplete}</h4>
-
-
-     </div>
-
-
+    return (
+      <div className="scoreSheety">
+        <Card>
+          <CardTitle title={currentUserScoresheet.title} subtitle="Rock & Roll, baby" />
+          <CardText>
+          Ones: {currentUserScoresheet.ones}<br />
+          Twos: {currentUserScoresheet.twos}<br />
+          Threes: {currentUserScoresheet.threes}<br />
+          Fours: {currentUserScoresheet.fours}<br />
+          Fives: {currentUserScoresheet.fives}<br />
+          Sixes: {currentUserScoresheet.sixes}<br />
+          </CardText>
+          <CardTitle title={currentUserScoresheet.totalTop} subtitle="Total Top Score" />
+          <CardTitle title={this.bonus()} subtitle="Bonus if you make 63 points up top!" />
+          <CardText>
+          Three of a Kind: {currentUserScoresheet.threeOfaKind}<br />
+          Carre: {currentUserScoresheet.carre}<br />
+          Fullhouse: {currentUserScoresheet.fullHouse}<br />
+          Small Street: {currentUserScoresheet.smallStreet}<br />
+          Large Street: {currentUserScoresheet.largeStreet}<br />
+          Yathzee: {currentUserScoresheet.yahtzee}<br />
+          Chance: {currentUserScoresheet.chance}<br />
+          </CardText>
+          <CardTitle title={currentUserScoresheet.totalBottom} subtitle="Total Bottom Score" />
+          <CardTitle title={currentUserScoresheet.totalComplete} subtitle="Total Score" />
+        </Card>
+        <br />
+      </div>
 
    )
  }
