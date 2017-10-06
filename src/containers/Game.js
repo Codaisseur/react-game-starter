@@ -22,7 +22,6 @@ class Game extends PureComponent {
 
   render() {
     const { game, currentUser } = this.props
-    console.log(game)
 
     if (!game) return null
 
