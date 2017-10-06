@@ -6,6 +6,9 @@ import subscribeToGames from '../actions/games/subscribe'
 import JoinDialog from '../components/games/JoinDialog'
 import ScoreSheet from '../components/games/ScoreSheet'
 import GamePlayers from '../components/games/GamePlayers'
+import Dice from '../components/games/Dice'
+import logo from '../components/games/R&R.png'
+
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -24,11 +27,13 @@ class Game extends PureComponent {
 
     return (
       <div className="Game">
-        <h1>Game!</h1>
-        <h1>{ game.title }</h1>
+        <img className='imagy' src={ logo } alt='Rocks and roll' />
+        <h3>{ game.title }</h3>
         <div><JoinDialog game={game} /></div>
         <div><ScoreSheet scoreSheet ={game.scoreSheet} /></div>
         <div><GamePlayers game={game} currentUser={currentUser}/></div>
+        <Dice game={game} dice={ game.rollDice }/>
+
       </div>
     )
   }
