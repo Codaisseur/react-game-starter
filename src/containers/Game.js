@@ -21,7 +21,7 @@ class Game extends PureComponent {
   }
 
   render() {
-    const { game, currentUser } = this.props
+    const { game } = this.props
 
     if (!game) return null
 
@@ -30,10 +30,11 @@ class Game extends PureComponent {
         <img className='imagy' src={ logo } alt='Rocks and roll' />
         <h3>{ game.title }</h3>
         <div><JoinDialog game={game} /></div>
-        <div><ScoreSheet scoreSheet ={game.scoreSheet} /></div>
-        <div><GamePlayers game={game} currentUser={currentUser}/></div>
+        <div><GamePlayers game={game}/></div>
         <Dice game={game} dice={ game.rollDice }/>
+        <div><ScoreSheet scoreSheet ={game.scoreSheet} game={game} /></div>
         <EndTurn game={game} user={currentUser}/>
+
       </div>
     )
   }
