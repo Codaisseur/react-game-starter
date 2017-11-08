@@ -54,6 +54,8 @@ class Game extends PureComponent {
     }
   }
 
+
+
   render() {
     const { game } = this.props
 
@@ -68,14 +70,12 @@ class Game extends PureComponent {
         <h1>Game!</h1>
         <p>{title}</p>
 
-        <h1>YOUR GAME HERE! :)</h1>
         <div className="Board">
-          {game.board.map(x => <div className="box">{}</div>)}
-          {game.horizontal.map((x,index) => <div className="horline" id={"index-" + index}></div>)}
-        </div>
 
-        <h2>Debug Props</h2>
-        <pre>{JSON.stringify(this.props, true, 2)}</pre>
+
+        {game.board.map(x => <div className="box">{}</div>)}
+        {game.vertical.map((x, index)=> <div className="verline" id={"vertical-" + index}></div>)}
+        </div>
 
         <JoinGameDialog gameId={game._id} />
       </div>
