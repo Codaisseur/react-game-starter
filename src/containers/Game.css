@@ -1,0 +1,17 @@
+.box {
+  width: 150px;
+  height: 150px;
+  border: 2px solid Purple;
+  background-color: Orange;
+  box-sizing: border-box;
+
+}
+
+.Board {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 450px;
+  margin: auto;
+
+}
