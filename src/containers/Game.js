@@ -70,8 +70,10 @@ class Game extends PureComponent {
 
         <h1>YOUR GAME HERE! :)</h1>
         <div className="Board">
-        {game.board.map(x => <div className="box">{}</div>)}
+          {game.board.map(x => <div className="box">{}</div>)}
+          {game.horizontal.map((x,index) => <div className="horline" id={"index-" + index}></div>)}
         </div>
+
         <h2>Debug Props</h2>
         <pre>{JSON.stringify(this.props, true, 2)}</pre>
 
