@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { fetchOneGame, fetchPlayers } from '../actions/games/fetch'
 import { connect as subscribeToWebsocket } from '../actions/websocket'
 import JoinGameDialog from '../components/games/JoinGameDialog'
+import PositionItem from '../components/connectfour/PositionItem'
+import './Game.css'
 
 const playerShape = PropTypes.shape({
   userId: PropTypes.string.isRequired,
@@ -54,6 +56,12 @@ class Game extends PureComponent {
     }
   }
 
+  renderPosition(position, index) {
+    return (
+      <PositionItem key={index} {...position} />
+    )
+  }
+
   render() {
     const { game } = this.props
 
@@ -71,7 +79,11 @@ class Game extends PureComponent {
         <h1>YOUR GAME HERE! :)</h1>
 
         <h2>Debug Props</h2>
-        <pre>{JSON.stringify(this.props, true, 2)}</pre>
+
+        <p>"render buttons for input here"</p>
+        <div className="gameContainer">
+          {this.props.game.positions.map(this.renderPosition)}
+        </div>
 
         <JoinGameDialog gameId={game._id} />
       </div>
