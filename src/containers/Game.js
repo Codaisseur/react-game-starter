@@ -72,10 +72,10 @@ class Game extends PureComponent {
 
         <div className="Board">
 
+
         {game.board.map(x => <div className="box">{}</div>)}
         {game.vertical.map((x, index)=> <div className="verline" id={"vertical-" + index}></div>)}
         </div>
-
 
         <JoinGameDialog gameId={game._id} />
       </div>
