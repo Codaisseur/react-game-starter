@@ -69,7 +69,7 @@ class Game extends PureComponent {
         <p>{title}</p>
 
         <h1>YOUR GAME HERE! :)</h1>
-
+        {this.props.game.board}
         <h2>Debug Props</h2>
         <pre>{JSON.stringify(this.props, true, 2)}</pre>
 
