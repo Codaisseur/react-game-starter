@@ -56,10 +56,12 @@ class Game extends PureComponent {
     }
   }
 
-  update(){
+  update(index){
     const { game } = this.props
-    console.log(game)
+    const test = game.horizontal[index] = 1
+    console.log(game.horizontal)
     this.props.updateGame(game)
+
   }
 
   render() {
@@ -79,7 +81,7 @@ class Game extends PureComponent {
         <div className="Board">
         {game.board.map(x => <div className="box" id={"won-" + x}>{}</div>)}
         {game.vertical.map((x, index)=> <div className="verline" id={"vertical-" + index}></div>)}
-        {game.horizontal.map((x, index)=> <div className="horline" id={"horizontal-" + index} onClick={this.update.bind(this)}></div>)}
+        {game.horizontal.map((x, index)=> <div className="horline" id={"horizontal-" + index} onClick={this.update.bind(this, index)}></div>)}
         </div>
 
         <JoinGameDialog gameId={game._id} />
