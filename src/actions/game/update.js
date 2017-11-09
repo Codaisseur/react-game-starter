@@ -14,7 +14,7 @@ export default (game) => {
     console.log("Imhere")
     dispatch({ type: APP_LOADING })
 
-    api.post(`/play/${game._id}`, {game})
+    api.patch(`/games/${game._id}`, {...game})
       .then(() => {
         dispatch({ type: APP_DONE_LOADING })
         dispatch({ type: LOAD_SUCCESS })

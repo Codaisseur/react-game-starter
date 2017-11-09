@@ -5,7 +5,7 @@ import { fetchOneGame, fetchPlayers } from '../actions/games/fetch'
 import { connect as subscribeToWebsocket } from '../actions/websocket'
 import JoinGameDialog from '../components/games/JoinGameDialog'
 import './Game.css'
-import update from '../actions/game/update'
+import updateGame from '../actions/game/update'
 
 const playerShape = PropTypes.shape({
   userId: PropTypes.string.isRequired,
@@ -56,6 +56,12 @@ class Game extends PureComponent {
     }
   }
 
+  update(){
+    const { game } = this.props
+    console.log(game)
+    this.props.updateGame(game)
+  }
+
   render() {
     const { game } = this.props
 
@@ -69,16 +75,11 @@ class Game extends PureComponent {
       <div className="Game">
         <h1>Game!</h1>
         <p>{title}</p>
-        <button
-        onClick={() => {game.update}}
-      >
-        Line!
-      </button>
 
         <div className="Board">
         {game.board.map(x => <div className="box" id={"won-" + x}>{}</div>)}
         {game.vertical.map((x, index)=> <div className="verline" id={"vertical-" + index}></div>)}
-        {game.horizontal.map((x, index)=> <div className="horline" id={"horizontal-" + index}></div>)}
+        {game.horizontal.map((x, index)=> <div className="horline" id={"horizontal-" + index} onClick={this.update.bind(this)}></div>)}
         </div>
 
         <JoinGameDialog gameId={game._id} />
@@ -87,7 +88,7 @@ class Game extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ currentUser, games }, { match }) => {
+const mapStateToProps = ({ currentUser, games, updateGame }, { match }) => {
   const game = games.filter((g) => (g._id === match.params.gameId))[0]
   const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
   const hasTurn = !!currentPlayer && game.players[game.turn].userId === currentUser._id
@@ -103,5 +104,6 @@ const mapStateToProps = ({ currentUser, games }, { match }) => {
 export default connect(mapStateToProps, {
   subscribeToWebsocket,
   fetchOneGame,
-  fetchPlayers
+  fetchPlayers,
+  updateGame
 })(Game)
