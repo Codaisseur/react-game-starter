@@ -5,6 +5,8 @@ import { fetchOneGame, fetchPlayers } from '../actions/games/fetch'
 import { connect as subscribeToWebsocket } from '../actions/websocket'
 import JoinGameDialog from '../components/games/JoinGameDialog'
 import './Game.css'
+import update from '../actions/game/update'
+
 const playerShape = PropTypes.shape({
   userId: PropTypes.string.isRequired,
   pairs: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -54,8 +56,6 @@ class Game extends PureComponent {
     }
   }
 
-
-
   render() {
     const { game } = this.props
 
@@ -69,12 +69,16 @@ class Game extends PureComponent {
       <div className="Game">
         <h1>Game!</h1>
         <p>{title}</p>
+        <button
+        onClick={() => {game.update}}
+      >
+        Line!
+      </button>
 
         <div className="Board">
-
-
-        {game.board.map(x => <div className="box">{}</div>)}
+        {game.board.map(x => <div className="box" id={"won-" + x}>{}</div>)}
         {game.vertical.map((x, index)=> <div className="verline" id={"vertical-" + index}></div>)}
+        {game.horizontal.map((x, index)=> <div className="horline" id={"horizontal-" + index}></div>)}
         </div>
 
         <JoinGameDialog gameId={game._id} />
