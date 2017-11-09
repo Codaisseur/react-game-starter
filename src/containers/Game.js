@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { fetchOneGame, fetchPlayers } from '../actions/games/fetch'
 import { connect as subscribeToWebsocket } from '../actions/websocket'
 import JoinGameDialog from '../components/games/JoinGameDialog'
+import './Game.css'
+import updateGame from '../actions/game/update'
 
 const playerShape = PropTypes.shape({
   userId: PropTypes.string.isRequired,
@@ -54,6 +56,14 @@ class Game extends PureComponent {
     }
   }
 
+  update(index){
+    const { game } = this.props
+    const test = game.horizontal[index] = 1
+    console.log(game.horizontal)
+    this.props.updateGame(game)
+
+  }
+
   render() {
     const { game } = this.props
 
@@ -68,10 +78,11 @@ class Game extends PureComponent {
         <h1>Game!</h1>
         <p>{title}</p>
 
-        <h1>YOUR GAME HERE! :)</h1>
-
-        <h2>Debug Props</h2>
-        <pre>{JSON.stringify(this.props, true, 2)}</pre>
+        <div className="Board">
+        {game.board.map(x => <div className="box" id={"won-" + x}>{}</div>)}
+        {game.vertical.map((x, index)=> <div className="verline" id={"vertical-" + index}></div>)}
+        {game.horizontal.map((x, index)=> <div className="horline" id={"horizontal-" + index} onClick={this.update.bind(this, index)}></div>)}
+        </div>
 
         <JoinGameDialog gameId={game._id} />
       </div>
@@ -79,7 +90,7 @@ class Game extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ currentUser, games }, { match }) => {
+const mapStateToProps = ({ currentUser, games, updateGame }, { match }) => {
   const game = games.filter((g) => (g._id === match.params.gameId))[0]
   const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
   const hasTurn = !!currentPlayer && game.players[game.turn].userId === currentUser._id
@@ -95,5 +106,6 @@ const mapStateToProps = ({ currentUser, games }, { match }) => {
 export default connect(mapStateToProps, {
   subscribeToWebsocket,
   fetchOneGame,
-  fetchPlayers
+  fetchPlayers,
+  updateGame
 })(Game)
