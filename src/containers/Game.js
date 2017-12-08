@@ -25,12 +25,13 @@ class Game extends PureComponent {
       createdAt: PropTypes.string.isRequired,
       started: PropTypes.bool,
       turn: PropTypes.number.isRequired,
-      cards: PropTypes.arrayOf(PropTypes.shape({
-        symbol: PropTypes.string,
-        _id: PropTypes.string,
-        won: PropTypes.bool,
-        visible: PropTypes.bool
-      }))
+      board: PropTypes.arrayOf(PropTypes.string)
+      // cards: PropTypes.arrayOf(PropTypes.shape({
+      //   symbol: PropTypes.string,
+      //   _id: PropTypes.string,
+      //   won: PropTypes.bool,
+      //   visible: PropTypes.bool
+      // }))
     }),
     currentPlayer: playerShape,
     isPlayer: PropTypes.bool,
@@ -54,6 +55,10 @@ class Game extends PureComponent {
     }
   }
 
+  renderSquare(){
+    <Square />
+  }
+
   render() {
     const { game } = this.props
 
@@ -68,7 +73,7 @@ class Game extends PureComponent {
         <h1>Game!</h1>
         <p>{title}</p>
 
-        <h1>YOUR GAME HERE! :)</h1>
+        {this.props.game.board.map(this.renderSquare)}
 
         <h2>Debug Props</h2>
         <pre>{JSON.stringify(this.props, true, 2)}</pre>
