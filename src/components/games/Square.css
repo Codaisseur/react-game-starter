@@ -1,0 +1,21 @@
+.Square {
+	flex: 1;
+	min-width: 200px;
+	max-width: 200px;
+	height: 200px;
+	display: flex;
+	align-items: center;
+	border: 1px solid #e4e4e4;
+	cursor: pointer;
+	color: #d32f2f;
+}
+
+.Square:hover {
+	background-color: #e4e4e4;
+}
+
+.Square p {
+	width: 100%;
+	text-align: center;
+	font-size: 60px;
+}
